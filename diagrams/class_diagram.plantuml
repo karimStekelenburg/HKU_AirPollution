@@ -1,0 +1,31 @@
+@startuml
+
+class Steppa{
+  - pin0: int
+  - pin1: int
+  - pin2: int
+  - pin3: int
+  + Steppa(pin0:int, pin1:int, pin2:int, pin3:int)
+  - setPhase1(): void
+  - setPhase2(): void
+  - setPhase3(): void
+  - setPhase4(): void
+  + runFullCycle(delay: int): void
+}
+
+class Controller{
+  - fl: Steppa
+  - fm: Steppa
+  - fr: Steppa
+  - ml: Steppa
+  - mm: Steppa
+  - mr: Steppa
+  - bl: Steppa
+  - bm: Steppa
+  - br: Steppa
+  + Controller(steppaz: struct)
+}
+
+Controller "(9..9)" -- Steppa
+
+@enduml
