@@ -1,12 +1,13 @@
 #include <arduino.h>
-#include <steppa.h>
+#include <Numa17Control.h>
 
-Steppa stepper(8, 9, 10, 11);
+Numa17Control numa(12, 13);
 
-void setup() {
-  Serial.begin(9600);
+void setup(){
+
 }
 
-void loop() {
-  stepper.runFullCycle(5);
+void loop(){
+  numa.setPosition(100);
+  numa.run();
 }

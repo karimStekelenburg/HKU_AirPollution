@@ -1,14 +1,32 @@
 #include <arduino.h>
-#include <Steppa.h>
 
-Steppa s(8, 9, 10, 11);
+int stepPin = 3;
+int dirPin = 2;
+
+int stepsPerRev = 200;
 
 
-void setup() {
-  Serial.begin(9600);
+void setup(){
+  pinMode(stepPin, OUTPUT);
+  pinMode(dirPin, OUTPUT);
 }
 
-void loop() {
-  s.runFullCycle(1000);
+void loop(){
+    digitalWrite(dirPin, LOW);
+    for(int i = 0; i < stepsPerRev; i++){
+      digitalWrite(stepPin, HIGH);
+      delayMicroseconds(2000);
+      digitalWrite(stepPin, LOW);
+      delayMicroseconds(2000);
+    }
+    delay(3000);
 
+    digitalWrite(dirPin, HIGH);
+    for(int i = 0; i < stepsPerRev*2; i++){
+      digitalWrite(stepPin, HIGH);
+      delayMicroseconds(2000);
+      digitalWrite(stepPin, LOW);
+      delayMicroseconds(2000);
+    }
+    delay(3000);
 }
