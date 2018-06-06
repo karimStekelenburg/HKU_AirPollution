@@ -7,7 +7,7 @@ class Numa17Control {
   private:
     // hardware config
     static int const stepsPerRev = 200;
-    static int const revsPerCoordinate = 200;
+    static float const revsPerCoordinate = 1;
     static int const microsecondSpeedDelay = 2000;
 
     // driver pins
@@ -26,13 +26,9 @@ class Numa17Control {
     int calcPlannedRevs();
     void updatePlannedSteps();
     void run();
+    void move(bool dir, int steps);
+    void calibrate();
     void setPosition(int position);
+    void noMove();
 };
-
-
-
-
-
-
-
 #endif
