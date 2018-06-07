@@ -11,6 +11,7 @@ Numa17Control steppers[8] = {
   Numa17Control(28, 29),
   Numa17Control(22, 23)
 };
+
 void setup() {
   Serial.begin(9600);
   readString = "";
@@ -33,9 +34,7 @@ void loop() {
     }
   }
 
-
-
-  Serial.println(readString.substring(0,3));
+  // Serial.println(readString.substring(0,3));
   String commandType = readString.substring(0,3);
 
   Serial.println(commandType);
@@ -50,7 +49,7 @@ void loop() {
     steppers[7].setPosition(readString.substring(17,19).toInt());
 
     for(unsigned int i = 0; i < 8; i++){
-      Serial.println("Running for stepper: " + String(i));
+      // Serial.println("Running for stepper: " + String(i));
       steppers[i].run();
     }
   }
@@ -65,10 +64,12 @@ void loop() {
     int stepperId = readString.substring(3,4).toInt();
     int steps = readString.substring(4,7).toInt();
     int dirr = readString.substring(7,8).toInt(); // 0 is false, 1 is true
-    Serial.println("StepperID: " + String(stepperId));
-    Serial.println("Steps: " + String(steps));
-    Serial.println("direction: " + dirr);
     steppers[stepperId].move(dirr, steps);
+  }
+  else if (commandType == "STP"){
+    for(int i = 0; i < 8; i++){
+      steppers[i].noMove();
+    }
   }
 }
 //

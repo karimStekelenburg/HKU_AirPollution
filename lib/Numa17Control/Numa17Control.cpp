@@ -17,6 +17,9 @@ int Numa17Control::calcPlannedCoordinates() {
   return this->nextPos - this->currentPos;
 }
 
+
+
+
 // int Numa17Control::calcPlannedRevs() {
 //   return this->calcPlannedCoordinates() * this->revsPerCoordinate;
 // }
@@ -46,6 +49,8 @@ void Numa17Control::move(bool dir, int steps){
   }
 }
 
+
+
 void Numa17Control::run(){
   this->plannedSteps = (this->nextPos - this->currentPos) * this->revsPerCoordinate * this->stepsPerRev;
   if(this->plannedSteps == 0){
@@ -67,7 +72,6 @@ void Numa17Control::run(){
     digitalWrite(this->stepPin, HIGH);
     delayMicroseconds(this->microsecondSpeedDelay);
   }
-
 }
 
 void Numa17Control::noMove(){
