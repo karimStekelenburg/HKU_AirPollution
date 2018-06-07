@@ -16,7 +16,7 @@ class Numa17Control {
   private:
     // hardware config
     static int const stepsPerRev = 200;
-    static float const revsPerCoordinate = 0.64;
+    static float const revsPerCoordinate = 0.37;
     static int const microsecondSpeedDelay = 2000;
     // 100px = 64 rounds
 
@@ -39,6 +39,7 @@ class Numa17Control {
     void run();
     void move(bool dir, int steps);
     void calibrate();
+    void setMax();
     void setPosition(int position);
     void noMove();
 };

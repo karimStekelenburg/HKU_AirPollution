@@ -71,6 +71,11 @@ void loop() {
       steppers[i].noMove();
     }
   }
+  else if (commandType == "MAX"){
+    for(int i = 0; i < 8; i++){
+      steppers[i].setMax();
+    }
+  }
 }
 //
 // #include <arduino.h>

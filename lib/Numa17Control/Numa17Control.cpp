@@ -17,7 +17,9 @@ int Numa17Control::calcPlannedCoordinates() {
   return this->nextPos - this->currentPos;
 }
 
-
+void Numa17Control::setMax() {
+  this->currentPos = 99;
+}
 
 
 // int Numa17Control::calcPlannedRevs() {
@@ -52,16 +54,20 @@ void Numa17Control::move(bool dir, int steps){
 
 
 void Numa17Control::run(){
+  Serial.println(this->currentPos);
+  Serial.println();
+
+
   this->plannedSteps = (this->nextPos - this->currentPos) * this->revsPerCoordinate * this->stepsPerRev;
   if(this->plannedSteps == 0){
     digitalWrite(this->stepPin, LOW);
     return;
   }
   if(this->plannedSteps < 0){
-    this->direction = false;
+    this->direction = true;
     this->currentPos -= 1;
   } else {
-    this->direction = true;
+    this->direction = false;
     this->currentPos += 1;
   }
 
